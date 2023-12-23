@@ -9,4 +9,4 @@ python3 assembler.py <.asm file>
 
 ## Notice
 
-因為目前只製作 PASS1，所以會將結果，也就是 OPTAB 和 SYMTAB 顯示於螢幕上，至於結果會寫在 objcode.txt 中，而目前開發只能成功寫入 H record 和 E record 而已
+因為目前只製作 PASS1，所以會將結果，也就是 OPTAB 和 SYMTAB 顯示於螢幕上，至於結果會寫在 objCode.txt 中，而目前開發只能成功寫入 H record 和 E record 而已
