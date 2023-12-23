@@ -175,41 +175,41 @@ def PASS2( raw, info ):
         exit(0)
     if s[1] == 'START':             # else case is skipped since declaration has done the task
         """ Header """
-        HRecord = 'H{:6s}{:06X}{:06X}'.format( info[1], info[0], info[2] )
+        HRecord = 'H{:6s}{:06X}{:06X}\n'.format( info[1], info[0], info[2] )
         #HRecord = "H" + info[1] + info[0] + info[2]   # Format the last two parameter is required
         objCode.write( HRecord )
 
-    TRecord = "T" + str( LOCCTR ) + "00"    # how to write starting addr and length
+#    TRecord = "T" + str( LOCCTR ) + "00"    # how to write starting addr and length
 
-    """ Middle Lines """
-    while True:
-        s = raw.readline().split()
-        if s[1] == 'END':
-            break
-        if """ This is not a comment line """:
-            # ", X" case
-            if s[-2][-1] == ',' and s[-1] == 'X':
-                s[-2] = s[-2] + 'X'
-                s.pop(-1)
-
-            # Format s into length-3 list
-            if len(s) == 2:
-                s.insert( 0, "" )
-
-            if """ s[1] in OPTAB """ :
-                formObjectCode( s[1], s[2] )
-            elif s[1] == 'BYTE' or s[1] == 'WORD':
-                """ Convert Constant to ObjectCode """
-                formObjectCodeConstant( s[1], s[2] )
-
-            # Over text record range
-            if """ It's time to create a new T record """:
-                objCode.write( TRecord )
-                TRecord = "T" + str( LOCCTR ) + "00"    # how to write starting addr and length
-            
-
-    ERecord = "E" + str( startAddr )
-    ERecord = 'E{:06X}'.format( info[0] )
+#    """ Middle Lines """
+#    while True:
+#        s = raw.readline().split()
+#        if s[1] == 'END':
+#            break
+#        if """ This is not a comment line """:
+#            # ", X" case
+#            if s[-2][-1] == ',' and s[-1] == 'X':
+#                s[-2] = s[-2] + 'X'
+#                s.pop(-1)
+#
+#            # Format s into length-3 list
+#            if len(s) == 2:
+#                s.insert( 0, "" )
+#
+#            if """ s[1] in OPTAB """ :
+#                formObjectCode( s[1], s[2] )
+#            elif s[1] == 'BYTE' or s[1] == 'WORD':
+#                """ Convert Constant to ObjectCode """
+#                formObjectCodeConstant( s[1], s[2] )
+#
+#            # Over text record range
+#            if """ It's time to create a new T record """:
+#                objCode.write( TRecord )
+#                TRecord = "T" + str( LOCCTR ) + "00"    # how to write starting addr and length
+#            
+#
+    #ERecord = "E" + str( startAddr ) + '\n'
+    ERecord = 'E{:06X}\n'.format( info[0] )
     objCode.write( ERecord )
 
     objCode.close()
